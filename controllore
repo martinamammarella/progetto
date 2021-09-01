@@ -1,0 +1,5 @@
+package controller;
+//richiama le funzioni a partire dalle rotte
+public class controllore {
+
+}
