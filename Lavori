@@ -1,0 +1,82 @@
+package model;
+import java.util.Date;
+
+public class Lavori {
+ private int id;
+ private String ruolo;
+ private String azienda;
+ private boolean remoto;
+ private String linguaggi[];
+ private String city;
+ private Date data;  
+ private String orarioLavoro;
+ private String sitoWeb;
+ public Lavori() {};
+ public Lavori(int id, String ruolo, String azienda, boolean remoto, String linguaggi[],String city,Date data, String orarioLavoro, String sitoWeb) {
+	 setId(id);
+	 setRuolo(ruolo);
+	 setAzienda(azienda);
+	 setRemoto(remoto);
+	 setLinguaggi(linguaggi);
+	 setCity(city);
+	 setData(data);
+	 setOrarioLavoro(orarioLavoro);
+	 setSitoWeb(sitoWeb);
+ }
+ public void setData(Date data) {
+	 this.data=data;
+ }
+ public Date getData() {
+	 return data;
+ }
+ public void setLinguaggi(String linguaggi[]) {
+	 for(int c=0;c<5;c++)
+	 this.linguaggi[c]=linguaggi[c];
+ }
+ public String[] getLinguaggi () {
+	 return linguaggi;
+ }
+ public void setCity(String city) {
+	 this.city=city;
+ }
+ public String getCity() {
+	 return city;
+ }
+
+ public void setId(int id) {
+	 this.id=id;
+ }
+ public int getId() {
+	 return id;
+ }
+ public void setRuolo(String ruolo) {
+	 this.ruolo=ruolo;
+ }
+ public String getRuolo() {
+	 return ruolo;
+ }
+ public void setAzienda(String azienda) {
+	 this.azienda=azienda;
+ }
+ public String getAzienda() {
+	 return azienda;
+ }
+ public void setRemoto(boolean remoto) {
+	 this.remoto=remoto;
+ }
+ public boolean getRemoto() {
+	 return remoto;
+ }
+ public void setOrarioLavoro(String orarioLavoro) {
+	 this.orarioLavoro=orarioLavoro;
+ }
+ public String getOrarioLavoro() {
+	 return orarioLavoro;
+ }
+ public void setSitoWeb(String sitoWeb) {
+	 this.sitoWeb=sitoWeb;
+ }
+ public String getSitoWeb() {
+	 return sitoWeb;
+ }
+}
