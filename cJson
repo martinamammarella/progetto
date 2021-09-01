@@ -1,0 +1,74 @@
+package service;
+import  model.Lavori;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
+import org.json.simple.parser.JSONParser;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.HttpURLConnection;
+import java.util.Vector;
+import java.util.Date;
+import java.io.*;
+
+public class cJson {
+	public void toJson() {
+ JSONObject chiamata =null;
+ JSONParser parser= new JSONParser();
+ 
+	 String apiKey="1175bbee759222ff5ed46fe1471c896b779e2fdf";
+	 String url="https://findwork.dev/api/jobs/";
+	 try {
+	 HttpURLConnection openConnection=(HttpURLConnection)new URL(url).openConnection();
+	 openConnection.setRequestMethod("GET");
+	 openConnection.setRequestProperty("Authorization", "API KEY-Token 1175bbee759222ff5ed46fe1471c896b779e2fdf");
+	 openConnection.setRequestProperty("Content-Type", "application/json");
+	 openConnection.setRequestProperty("Accept","application/json");
+	 openConnection.setDoOutput(true);
+	 String jsonBody=null;
+	 try (OutputStream os=openConnection.getOutputStream()){
+		 byte[] input=jsonBody.getBytes("utf-8");
+		 os.write(input,0,input.length);
+	 }
+	 
+	 InputStream in=openConnection.getInputStream();
+	 String line="";
+	 String data="";
+	 try {
+		 InputStreamReader inR= new InputStreamReader(in);
+		 BufferedReader buf= new BufferedReader(inR);
+		 while((line=buf.readLine())!=null) {
+			 data +=line;
+		 }
+	 }finally {
+		 in.close();
+	 }
+	 JSONObject obj=(JSONObject) JSONValue.parseWithException(data);
+	 
+
+ }
+	  
+	 catch(Exception e)
+	 {
+		 System.out.println("errore2");
+	 }}
+ Lavori x= new Lavori();
+ Vector<Lavori> offerte= new Vector<Lavori>();
+ JSONArray array1=(JSONArray)chiamata.get("results");
+ for(Object o:array1) {
+	 JSONObject ob1= (JSONObject) o;
+	 x.setId((int)ob1.get("id"));
+	 x.setRuolo((String)ob1.get("role"));
+	 x.setAzienda((String)ob1.get("company_name"));
+	 x.setRemoto((boolean)ob1.get("remote"));
+	 x.setSitoWeb((String)ob1.get("url"));
+	 x.setData((Date)ob1.get("date_posted"));
+	 x.setOrarioLavoro((String)ob1.get("employment_type"));
+	 x.setCity((String)ob1.get("location"));
+	 x.setLinguaggi((String [])ob1.get("keywords")); //funziona?
+	 offerte.add(x);
+	  }
+}
+}
