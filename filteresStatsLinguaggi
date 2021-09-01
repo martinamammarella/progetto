@@ -1,0 +1,60 @@
+package utils;
+
+import java.util.Date;
+import java.util.Vector;
+
+import org.json.simple.JSONArray;
+
+import model.Lavori;
+
+public class filteresStatsLinguaggi extends fStats{
+	int r=0;
+	int f=0;
+	public  filteresStatsLinguaggi() {}
+		public JSONArray filtraggioStatsLin(Vector<Lavori> offerte,String[]lin,String sito,Date data) {
+			if(data==null && sito.equals(null)) {
+			for(Lavori z:offerte)
+			{  for(String sl:z.getLinguaggi())
+				for(int c=0;c<5;c++) {
+				 if(sl.equals(lin[c])){
+				   if(z.getRemoto()==true)
+						r++;
+				   if(z.getOrarioLavoro()!=null)
+					   f++;
+				}}
+			}
+			}
+			
+		else {if(sito.equals(null)) {
+			if(sito.equals(null)) {
+		    for(Lavori z:offerte)
+				{  for(String sl:z.getLinguaggi())
+					for(int c=0;c<5;c++) {
+					 if(sl.equals(lin[c])){
+						 if(z.getData()==data) {
+					   if(z.getRemoto()==true)
+							r++;
+					   if(z.getOrarioLavoro()!=null)
+						   f++;
+					}}
+				}
+				}
+			
+		}}else {
+			 for(Lavori z:offerte)
+				{  for(String sl:z.getLinguaggi())
+					for(int c=0;c<5;c++) {
+					 if(sl.equals(lin[c])){
+						 if(z.getSitoWeb().equals(sito)) {
+					   if(z.getRemoto()==true)
+							r++;
+					   if(z.getOrarioLavoro()!=null)
+						   f++;
+					}}
+				}
+				}
+			
+		}
+			
+
+		}}}
