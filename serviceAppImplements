@@ -1,0 +1,5 @@
+package service;
+//classe che implementa l'interfaccia
+public class serviceAppImplements implements serviceApp{
+
+}
