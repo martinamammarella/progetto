@@ -1,0 +1,5 @@
+package service;
+//interfaccia dell'applicazione, servizi esposti all'utente
+public interface serviceApp {
+
+}
