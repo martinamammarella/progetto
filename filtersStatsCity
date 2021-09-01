@@ -1,0 +1,59 @@
+package utils;
+
+import java.util.Vector;
+
+import org.json.simple.JSONArray;
+import java.util.Date;
+import model.Lavori;
+
+public class filtersStatsCity extends fStats {
+	int r=0;
+	int f=0;
+	public filtersStatsCity() {}
+	public JSONArray filtraggioStatsCi(Vector<Lavori> offerte,String[]city,String sito,Date data) {
+		if(data==null && sito.equals(null)) {
+		for(Lavori z:offerte)
+		{   for(int c=0;c<5;c++) {
+			if(z.getCity().equals(city[c])){
+			   if(z.getRemoto()==true)
+					r++;
+			   if(z.getOrarioLavoro()!=null)
+				   f++;
+			}
+		}
+		}
+		
+	}else {
+		if(sito.equals(null)) {
+	
+		for(Lavori z:offerte)
+		{   for(int c=0;c<5;c++) {
+			if(z.getCity().equals(city[c])){
+				if(z.getData()==data) {
+			    if(z.getRemoto()==true)
+					r++;
+			    if(z.getOrarioLavoro()!=null)
+					   f++;
+			    
+			}}
+		}
+		
+	}}else {
+		for(Lavori z:offerte)
+		{   for(int c=0;c<5;c++) {
+			if(z.getCity().equals(city[c])){
+				if(z.equals(sito)) {
+			    if(z.getRemoto()==true)
+					r++;
+			    if(z.getOrarioLavoro()!=null)
+					   f++;
+			}}
+		}
+	}}
+		
+	}
+		
+		
+	}//costruire jsonarray
+}
+   
