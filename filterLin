@@ -1,0 +1,28 @@
+package utils;
+
+import java.util.Date;
+import java.util.Vector;
+
+import org.json.simple.JSONArray;
+
+import model.Lavori;
+
+public class filterLin extends Filters {
+	public filterLin(String[] city, String[] linguaggi,String remoto, String link, Date data,String oreLavoro){
+		 super(city,linguaggi,remoto,link,data,oreLavoro);
+	}
+	public JSONArray filtraggio(String[] flin,Vector<Lavori> offerte) {
+		 JSONArray a= new JSONArray();
+		 for(Lavori z:offerte) {
+			 for(String c:flin) {
+				 for(int x=0;!z.getLinguaggi()[x].equals(null);x++) {
+				 if(z.getLinguaggi()[x].equals(c)) {
+				//	 a.add((JSONObject)Lavori)
+				 }
+					 
+			 }
+		 }
+		 return a;
+	 }
+
+}}
