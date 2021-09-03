@@ -1,18 +1,14 @@
 package utils;
-
-import java.util.Date;
-import java.util.Vector;
-
-import org.json.simple.JSONArray;
+import org.json.simple.*;
 
 import model.Lavori;
-
+import java.util.*;
 public class filterLin extends Filters {
 	public filterLin(String[] city, String[] linguaggi,String remoto, String link, Date data,String oreLavoro){
 		 super(city,linguaggi,remoto,link,data,oreLavoro);
 	}
-	public JSONArray filtraggio(String[] flin,Vector<Lavori> offerte) {public JSONArray filtraggio(String[] flin,Vector<Lavori> offerte) {
-		 JSONArray a= new JSONArray();
+	public ArrayList<Lavori> filtraggio(String[] flin,Vector<Lavori> offerte) {
+		ArrayList<Lavori> filtrato = new ArrayList<Lavori>();
 		 for(Lavori z:offerte) {
 			 List <String> l=z.getLinguaggi();
 			 
@@ -20,7 +16,7 @@ public class filterLin extends Filters {
 			 for(String c:l) {
 				 for(String c1:flin) {
 					if(c.equals(c1)){
-						  a.add(z);
+						  filtrato.add(z);
 					 }
 					 {
 						 
@@ -32,6 +28,6 @@ public class filterLin extends Filters {
 		 }
 		 
 	 }
-		 return a;
+		 return filtrato;
 
 }}
