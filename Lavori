@@ -1,18 +1,18 @@
 package model;
-import java.util.Date;
-
+import org.json.simple.*;
+import java.util.*;
 public class Lavori {
- private int id;
+ private long id;
  private String ruolo;
  private String azienda;
  private boolean remoto;
- private String linguaggi[];
+ private List<String> linguaggi= new ArrayList<String>();
  private String city;
- private Date data;  
+ private String data;  
  private String orarioLavoro;
  private String sitoWeb;
  public Lavori() {};
- public Lavori(int id, String ruolo, String azienda, boolean remoto, String linguaggi[],String city,Date data, String orarioLavoro, String sitoWeb) {
+ public Lavori(long id, String ruolo, String azienda, boolean remoto, JSONArray  linguaggi,String city,String data, String orarioLavoro, String sitoWeb) {
 	 setId(id);
 	 setRuolo(ruolo);
 	 setAzienda(azienda);
@@ -23,17 +23,20 @@ public class Lavori {
 	 setOrarioLavoro(orarioLavoro);
 	 setSitoWeb(sitoWeb);
  }
- public void setData(Date data) {
+ public void setData(String data) {
 	 this.data=data;
  }
- public Date getData() {
+ public String getData() {
 	 return data;
  }
- public void setLinguaggi(String linguaggi[]) {
-	 for(int c=0;c<5;c++)
-	 this.linguaggi[c]=linguaggi[c];
+ public void setLinguaggi(JSONArray array1) {
+	
+	 for(int i=0; i < array1.size(); i++) {
+         linguaggi.add((String)array1.get(i));
+      }
+	
  }
- public String[] getLinguaggi () {
+ public List<String> getLinguaggi () {
 	 return linguaggi;
  }
  public void setCity(String city) {
@@ -43,10 +46,10 @@ public class Lavori {
 	 return city;
  }
 
- public void setId(int id) {
+ public void setId(long id) {
 	 this.id=id;
  }
- public int getId() {
+ public long getId() {
 	 return id;
  }
  public void setRuolo(String ruolo) {
