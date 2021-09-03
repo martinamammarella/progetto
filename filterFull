@@ -1,23 +1,24 @@
 package utils;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Vector;
 import model.Lavori;
 import org.json.simple.*;
-import model.Lavori;
 public class filterFull extends Filters {
 	public filterFull(String[] city, String[] linguaggi,String remoto, String link, Date data,String oreLavoro){
 		 super(city,linguaggi,remoto,link,data,oreLavoro);
 	}
- public JSONArray filtraggio(String[] fcity,Vector<Lavori> offerte) {
-	 JSONArray a= new JSONArray();
+ public ArrayList<Lavori> filtraggio(String[] fcity,Vector<Lavori> offerte) {
+	 ArrayList<Lavori> filtrato = new ArrayList<Lavori>();
 	 for(Lavori z:offerte) {
 		 
 			 if(z.getOrarioLavoro()!=null) {
-			//	 a.add((JSONObject)Lavori)
-			 }
+			filtrato.add(z);
 				 
 		 }
 	 
-	 return a;
+	
  }
+	return filtrato;
 }
+ }
