@@ -1,5 +1,6 @@
 package utils;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Vector;
 
@@ -11,15 +12,15 @@ public class filterRemote extends Filters{
 	public filterRemote(String[] city, String[] linguaggi,String remoto, String link, Date data,String oreLavoro){
 		 super(city,linguaggi,remoto,link,data,oreLavoro);
 	}
-	public JSONArray filtraggio(String remote,Vector<Lavori> offerte) {
-		JSONArray a= new JSONArray();
+	public ArrayList<Lavori> filtraggio(String remote,Vector<Lavori> offerte) {
+		ArrayList<Lavori> filtrato = new ArrayList<Lavori>();
 		 for(Lavori z:offerte) {
 				 if(z.getRemoto()!=true) {
-				//	 a.add((JSONObject)Lavori)
+				filtrato.add(z);
 				 }
 					 
 			 }
 		 
-		 return a;
+		 return filtrato;
 	 }
 }
