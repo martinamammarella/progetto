@@ -1,59 +1,180 @@
 package utils;
+import org.json.simple.*;
 
 import java.util.Vector;
 
-import org.json.simple.JSONArray;
+
+
+import java.util.ArrayList;
 import java.util.Date;
 import model.Lavori;
 
 public class filtersStatsCity extends fStats {
-	int r=0;
-	int f=0;
-	public filtersStatsCity() {}
-	public JSONArray filtraggioStatsCi(Vector<Lavori> offerte,String[]city,String sito,Date data) {
-		if(data==null && sito.equals(null)) {
-		for(Lavori z:offerte)
-		{   for(int c=0;c<5;c++) {
-			if(z.getCity().equals(city[c])){
-			   if(z.getRemoto()==true)
-					r++;
-			   if(z.getOrarioLavoro()!=null)
-				   f++;
-			}
-		}
-		}
-		
-	}else {
-		if(sito.equals(null)) {
 	
-		for(Lavori z:offerte)
-		{   for(int c=0;c<5;c++) {
-			if(z.getCity().equals(city[c])){
-				if(z.getData()==data) {
-			    if(z.getRemoto()==true)
-					r++;
-			    if(z.getOrarioLavoro()!=null)
-					   f++;
-			    
-			}}
-		}
-		
-	}}else {
-		for(Lavori z:offerte)
-		{   for(int c=0;c<5;c++) {
-			if(z.getCity().equals(city[c])){
-				if(z.equals(sito)) {
-			    if(z.getRemoto()==true)
-					r++;
-			    if(z.getOrarioLavoro()!=null)
-					   f++;
-			}}
-		}
-	}}
+	
+	public ArrayList<Lavori> filtraggioStatsCi(Vector<Lavori> offerte,String[]city,String sito,String data) {
+	int r1=0, r2=0,r3=0,r4=0,r5=0;
+	int f1=0, f2=0,f3=0,f4=0,f5=0;
+	int totalelondon=0;
+	int totaleberlino=0;
+	int totaleottawa=0;
+	int totalecopenaghen=0;
+	int totalecupertino=0;
+		if(data==null && sito.equals(null)) {
+			 for(Lavori z:offerte) {
+				 if(z.getCity()!=null) {
+				 for(String c:city) {
+				  if(z.getCity().contains(c)) {
+					  if(c.equals("London")){
+						  totalelondon++;
+						  if(z.getRemoto()==true)
+								r1++;
+						  if(z.getOrarioLavoro()!=null)
+							   f1++; }
+					  if(c.equals("Berlino")){
+						  totaleberlino++;
+						  if(z.getRemoto()==true)
+								r2++;
+						  if(z.getOrarioLavoro()!=null)
+							   f2++;}
+					  if(c.equals("Ottawa")){
+						  totaleottawa++;
+						  if(z.getRemoto()==true)
+								r3++;
+						  if(z.getOrarioLavoro()!=null)
+							   f3++;}
+					  if(c.equals("Copenaghen")){
+						  totalecopenaghen++;
+						  if(z.getRemoto()==true)
+								r4++;
+						  if(z.getOrarioLavoro()!=null)
+							   f4++;}
+					  if(c.equals("Cupertino")){
+						  totalecupertino++;
+						  if(z.getRemoto()==true)
+								r5++;
+						  if(z.getOrarioLavoro()!=null)
+							   f5++;}}}}}}
+		else {
+		if(sito.equals(null)) {
+			 for(Lavori z:offerte) {
+				 if(z.getCity()!=null) {
+				 for(String c:city) {
+				  if(z.getCity().contains(c)) {
+					  if(z.getData().equals(data)) {
+						  if(c.equals("London")){
+							  totaleberlino++;;
+							  if(z.getRemoto()==true)
+									r1++;
+							  if(z.getOrarioLavoro()!=null)
+								   f1++; }
+						  if(c.equals("Berlino")){
+							  totalelondon++;
+							  if(z.getRemoto()==true)
+									r2++;
+							  if(z.getOrarioLavoro()!=null)
+								   f2++;}
+						  if(c.equals("Ottawa")){
+							  totaleottawa++;
+							  if(z.getRemoto()==true)
+									r3++;
+							  if(z.getOrarioLavoro()!=null)
+								   f3++;}
+						  if(c.equals("Copenaghen")){
+							  totaleottawa++;
+							  if(z.getRemoto()==true)
+									r4++;
+							  if(z.getOrarioLavoro()!=null)
+								   f4++;}
+						  if(c.equals("Cupertino")){
+							  totalecupertino++;
+							  if(z.getRemoto()==true)
+									r5++;
+							  if(z.getOrarioLavoro()!=null)
+								   f5++;}}}}}}
+					  }else {
+						  for(Lavori z:offerte) {
+								 if(z.getCity()!=null) {
+								 for(String c:city) {
+								  if(z.getCity().contains(c)) {
+									  if(z.getSitoWeb().equals(sito)) {
+										  if(c.equals("London")){
+											  totaleberlino++;
+											  if(z.getRemoto()==true)
+													r1++;
+											  if(z.getOrarioLavoro()!=null)
+												   f1++; }
+										  if(c.equals("Berlino")){
+											  totalelondon++;
+											  if(z.getRemoto()==true)
+													r2++;
+											  if(z.getOrarioLavoro()!=null)
+												   f2++;}
+										  if(c.equals("Ottawa")){
+											  totaleottawa++;
+											  if(z.getRemoto()==true)
+													r3++;
+											  if(z.getOrarioLavoro()!=null)
+												   f3++;}
+										  if(c.equals("Copenaghen")){
+											  totalecopenaghen++;
+											  if(z.getRemoto()==true)
+													r4++;
+											  if(z.getOrarioLavoro()!=null)
+												   f4++;}
+										  if(c.equals("Cupertino")){
+											  totalecupertino++;
+											  if(z.getRemoto()==true)
+													r5++;
+											  if(z.getOrarioLavoro()!=null)
+												   f5++;}}}}}}
+						  
+					  }
+				  }
+		JSONObject ob1= new JSONObject();
+		JSONObject ob2= new JSONObject();
+		JSONObject ob3= new JSONObject();
+		JSONObject ob4= new JSONObject();
+		JSONObject ob5= new JSONObject();
+		JSONArray array= new JSONArray();
+		float s1=(r1/totalelondon)*100;
+		float s2=(r2/totaleberlino)*100;
+		float s3=(r3/totaleottawa)*100;
+		float s4=(r4/totalecopenaghen)*100;
+		float s5=(r5/totalecupertino)*100;
+		float ss1=(f1/totalelondon)*100;
+		float ss2=(f2/totaleberlino)*100;
+		float ss3=(f3/totaleottawa)*100;
+		float ss4=(f4/totalecopenaghen)*100;
+		float ss5=(f5/totalecupertino)*100;
+		ob1.put("remoteLondon", r1);
+		ob1.put("fulllondon", f1);
+		ob1.put("percentualeremotelondon", s1);
+		ob1.put("percentualefulllondon", ss1);
+		array.add(ob1);
+		ob2.put("remoteberlino", r2);
+		ob2.put("fullberlino", f2);
+		ob2.put("percentualeremoteberlino",s2);
+		ob2.put("percentualefullberlino",ss2);
+		array.add(ob2);
+		ob3.put("remoteOttawa",r3);
+		ob3.put("fullottawa", f3);
+		ob3.put("percentualeremoteottawa", s3);
+		ob3.put("percentualefullottawa", ss3);
+		array.add(ob3);
+		ob4.put("remoteCopenaghen", r4);
+		ob4.put("fullcopenaghen", f4);
+		ob4.put("percentualeremotecopenaghen", s4);
+		ob4.put("percentualefullcopenaghen", ss4);
+		array.add(ob4);
+		ob5.put("remoteCupertino", r5);
+		ob5.put("fullcupertino", f5);
+		ob5.put("percentualeremotecupertino", s5);
+		ob5.put("percentualefullcupertino", ss5);
+		array.add(ob5);
+		return array;
 		
 	}
-		
-		
-	}//costruire jsonarray
-}
+	
+	}
    
