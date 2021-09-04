@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.Vector;
 
 import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 import model.Lavori;
 
@@ -12,49 +13,166 @@ public class filteresStatsLinguaggi extends fStats{
 	int f=0;
 	public  filteresStatsLinguaggi() {}
 		public JSONArray filtraggioStatsLin(Vector<Lavori> offerte,String[]lin,String sito,Date data) {
-			if(data==null && sito.equals(null)) {
-			for(Lavori z:offerte)
-			{  for(String sl:z.getLinguaggi())
-				for(int c=0;c<5;c++) {
-				 if(sl.equals(lin[c])){
-				   if(z.getRemoto()==true)
-						r++;
-				   if(z.getOrarioLavoro()!=null)
-					   f++;
-				}}
+			int r1=0, r2=0,r3=0,r4=0,r5=0;
+			int f1=0, f2=0,f3=0,f4=0,f5=0;
+			int totalejava=0;
+			int totalec=0;
+			int totalejavas=0;
+			int totalepython=0;
+            int totaletypescript=0;
+				if(data==null && sito.equals(null)) {
+					 for(Lavori z:offerte) {
+						 for(String c:lin) {
+						 for(String l:z.getLinguaggi()) {
+						  if(l.equals(c)) {
+							  totalejava ++;
+							  if(l.equals("java")){
+								  if(z.getRemoto()==true)
+										r1++;
+								  if(z.getOrarioLavoro()!=null)
+									   f1++; }
+							  if(l.equals("c++")){
+								  totalec ++;
+								  if(z.getRemoto()==true)
+										r2++;
+								  if(z.getOrarioLavoro()!=null)
+									   f2++;}
+							  if(l.equals("javascript")){
+								  totalejavas ++;
+								  if(z.getRemoto()==true)
+										r3++;
+								  if(z.getOrarioLavoro()!=null)
+									   f3++;}
+							  if(l.equals("python")){
+								  totalepython ++;
+								  if(z.getRemoto()==true)
+										r4++;
+								  if(z.getOrarioLavoro()!=null)
+									   f4++;}
+							  if(l.equals("typescript")){
+								  totaletypescript ++;
+								  if(z.getRemoto()==true)
+										r5++;
+								  if(z.getOrarioLavoro()!=null)
+									   f5++;}}}}}}
+				else {
+				if(sito.equals(null)) {
+					 for(Lavori z:offerte) {
+						 for(String c:lin) {
+							 for(String l:z.getLinguaggi()) {
+						      if(l.equals(c)) {
+							    if(z.getData().equals(data)) {
+								  if(l.equals("java")){
+									  totalejava ++;
+									  if(z.getRemoto()==true)
+											r1++;
+									  if(z.getOrarioLavoro()!=null)
+										   f1++; }
+								  if(l.equals("c++")){
+									  totalec ++;
+									  if(z.getRemoto()==true)
+											r2++;
+									  if(z.getOrarioLavoro()!=null)
+										   f2++;}
+								  if(l.equals("javascript")){
+									  totalejavas ++;
+									  if(z.getRemoto()==true)
+											r3++;
+									  if(z.getOrarioLavoro()!=null)
+										   f3++;}
+								  if(l.equals("python")){
+									  totalepython ++;
+									  if(z.getRemoto()==true)
+											r4++;
+									  if(z.getOrarioLavoro()!=null)
+										   f4++;}
+								  if(l.equals("typescript")){
+									  totaletypescript ++;
+									  if(z.getRemoto()==true)
+											r5++;
+									  if(z.getOrarioLavoro()!=null)
+										   f5++;}}}}}}
+							  }else {
+								  for(Lavori z:offerte) {
+										 for(String c:lin) {
+											 for(String l:z.getLinguaggi()) {
+												 if(l.equals(c)) {
+											        if(z.getSitoWeb().equals(sito)) {
+												     if(l.equals("java")){
+												    	 totalejava ++;
+													   if(z.getRemoto()==true)
+															r1++;
+													   if(z.getOrarioLavoro()!=null)
+														   f1++; }
+											     	  if(l.equals("c++")){
+											     		  totalec ++;
+													   if(z.getRemoto()==true)
+															r2++;
+													   if(z.getOrarioLavoro()!=null)
+														   f2++;}
+											     	  if(l.equals("javascript")){
+											     		  totalejavas ++;
+													   if(z.getRemoto()==true)
+															r3++;
+													   if(z.getOrarioLavoro()!=null)
+														   f3++;}
+											    	  if(l.equals("python")){
+											    		  totalepython ++;
+													   if(z.getRemoto()==true)
+															r4++;
+													   if(z.getOrarioLavoro()!=null)
+														   f4++;}
+												      if(l.equals("typescript")){
+												    	  totaletypescript ++;
+													   if(z.getRemoto()==true)
+															r5++;
+													   if(z.getOrarioLavoro()!=null)
+														   f5++;}}}}}}
+								  
+							  }
+						  }
+				JSONObject ob1= new JSONObject();
+				JSONObject ob2= new JSONObject();
+				JSONObject ob3= new JSONObject();
+				JSONObject ob4= new JSONObject();
+				JSONObject ob5= new JSONObject();
+				float s1=(r1/totalejava)*100;
+				float s2=(r2/totalec)*100;
+				float s3=(r3/totalejavas)*100;
+				float s4=(r4/totalepython)*100;
+				float s5=(r5/totaletypescript)*100;
+				float ss1=(f1/totalejava)*100;
+				float ss2=(f2/totalec)*100;
+				float ss3=(f3/totalejavas)*100;
+				float ss4=(f4/totalepython)*100;
+				float ss5=(f5/totaletypescript)*100;
+				JSONArray array= new JSONArray();
+				ob1.put("remotejava", r1);
+				ob1.put("fulljava", f1);
+				ob1.put("percentualeremotejava", s1);
+				ob1.put("percentualefulljava", ss1);
+				array.add(ob1);
+				ob2.put("remotec++", r2);
+				ob2.put("fullc++", f2);
+				ob2.put("percentualeremotec++", s2);
+			    ob2.put("percentualefulljava", ss2);
+				array.add(ob2);
+				ob3.put("remotejavascript",r3);
+				ob3.put("fulljavascript", f3);
+				ob3.put("percentualeremotejavas", s3);
+				ob3.put("percentualefulljavas", ss3);
+				array.add(ob3);
+				ob4.put("remotepython", r4);
+				ob4.put("fullpython", f4);
+				ob4.put("percentualeremotepython", s4);
+				ob4.put("percentualefulljava", ss4);
+				ob5.put("remotetypescript", r5);
+				ob5.put("fulltypescript",f5);
+				ob5.put("percentualeremotetypescript", s5);
+				ob5.put("percentualefulltypescript", ss5);
+				array.add(ob5);
+				return array;
+				
 			}
+			
 			}
-			
-		else {if(sito.equals(null)) {
-			if(sito.equals(null)) {
-		    for(Lavori z:offerte)
-				{  for(String sl:z.getLinguaggi())
-					for(int c=0;c<5;c++) {
-					 if(sl.equals(lin[c])){
-						 if(z.getData()==data) {
-					   if(z.getRemoto()==true)
-							r++;
-					   if(z.getOrarioLavoro()!=null)
-						   f++;
-					}}
-				}
-				}
-			
-		}}else {
-			 for(Lavori z:offerte)
-				{  for(String sl:z.getLinguaggi())
-					for(int c=0;c<5;c++) {
-					 if(sl.equals(lin[c])){
-						 if(z.getSitoWeb().equals(sito)) {
-					   if(z.getRemoto()==true)
-							r++;
-					   if(z.getOrarioLavoro()!=null)
-						   f++;
-					}}
-				}
-				}
-			
-		}
-			
-
-		}}}
