@@ -1,33 +1,23 @@
 package utils;
-import org.json.simple.*;
-
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Vector;
 import model.Lavori;
-import java.util.*;
-public class filterLin extends Filters {
-	public filterLin(String[] city, String[] linguaggi,String remoto, String link, Date data,String oreLavoro){
-		 super(city,linguaggi,remoto,link,data,oreLavoro);
+import org.json.simple.*;
+import model.Lavori;
+public class filterCity extends Filters {
+	public filterCity(String[] city, String[] linguaggi,String remoto,String oreLavoro){
+		 super(city,linguaggi,remoto,oreLavoro);
 	}
-	public ArrayList<Lavori> filtraggio(String[] flin,Vector<Lavori> offerte) {
-		ArrayList<Lavori> filtrato = new ArrayList<Lavori>();
-		 for(Lavori z:offerte) {
-			 List <String> l=z.getLinguaggi();
-			 
-			  {
-			 for(String c:l) {
-				 for(String c1:flin) {
-					if(c.equals(c1)){
-						  filtrato.add(z);
-					 }
-					 {
-						 
-				 
-			 
-				 }
-					 
-			 }}
-		 }
-		 
-	 }
-		 return filtrato;
-
-}}
+ public ArrayList<Lavori> filtraggio(String[] fcity,ArrayList<Lavori> offerte) {
+	 ArrayList<Lavori> filtrato = new ArrayList<Lavori>();
+	 for(Lavori z:offerte) {
+		 if(z.getCity()!=null) {
+		 for(String c:fcity) {
+		  if(z.getCity().contains(c)) {
+			 filtrato.add(z);}
+			  }
+	 }}
+	  return filtrato;
+ }
+}
