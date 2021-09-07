@@ -8,10 +8,10 @@ public class Filters {
  private String[] city;
  private String[]linguaggi;
  private String link;
- private Date data;
+ private String data;
  
  
- public Filters(String[] city, String[] linguaggi,String remoto, String link, Date data,String oreLavoro) {
+ public Filters(String[] city, String[] linguaggi,String remoto,String oreLavoro) {
 	 setCity(city);
 	 setLinguaggi(linguaggi);
 	 setRemoto(remoto);
@@ -27,10 +27,10 @@ public class Filters {
  public String[] getCity() {
 	 return city;
  }
- public Date getDate() {
+ public String getDate() {
 	 return data;
  }
- public void setData(Date data) {
+ public void setData(String data) {
 	 this.data=data;
  }
  public void setLinguaggi(String[] linguaggi) {
@@ -57,15 +57,6 @@ public class Filters {
  public String getLink() {
 	 return link;
  }
- public void analisi(Filters x) {
-	 if(x.getParametro().equals("full")) {
-		filtersRemote y= new filtersRemote();
-	 }
-	 else {
-		 filtersFull y= new filtersFull();
-		 
-	 }
-		 
- }
+ 
 }
 
