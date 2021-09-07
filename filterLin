@@ -4,10 +4,10 @@ import org.json.simple.*;
 import model.Lavori;
 import java.util.*;
 public class filterLin extends Filters {
-	public filterLin(String[] city, String[] linguaggi,String remoto, String link, Date data,String oreLavoro){
-		 super(city,linguaggi,remoto,link,data,oreLavoro);
+	public filterLin(String[] city, String[] linguaggi,String remoto,String oreLavoro){
+		 super(city,linguaggi,remoto,oreLavoro);
 	}
-	public ArrayList<Lavori> filtraggio(String[] flin,Vector<Lavori> offerte) {
+	public ArrayList<Lavori> filtraggio(String[] flin,ArrayList<Lavori>offerte) {
 		ArrayList<Lavori> filtrato = new ArrayList<Lavori>();
 		 for(Lavori z:offerte) {
 			 List <String> l=z.getLinguaggi();
