@@ -9,10 +9,10 @@ import org.json.simple.JSONArray;
 import model.Lavori;
 
 public class filterRemote extends Filters{
-	public filterRemote(String[] city, String[] linguaggi,String remoto, String link, Date data,String oreLavoro){
-		 super(city,linguaggi,remoto,link,data,oreLavoro);
+	public filterRemote(String[] city, String[] linguaggi,String remoto, String oreLavoro){
+		 super(city,linguaggi,remoto,oreLavoro);
 	}
-	public ArrayList<Lavori> filtraggio(String remote,Vector<Lavori> offerte) {
+	public ArrayList<Lavori> filtraggio(String remote,ArrayList<Lavori> offerte) {
 		ArrayList<Lavori> filtrato = new ArrayList<Lavori>();
 		 for(Lavori z:offerte) {
 				 if(z.getRemoto()!=true) {
