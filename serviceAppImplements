@@ -1,5 +1,84 @@
 package service;
-//classe che implementa l'interfaccia
-public class serviceAppImplements implements serviceApp{
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Vector;
+
+import org.json.simple.JSONArray;
+import utils.fStats;
+import utils.filteresStatsLinguaggi;
+import utils.filtersStatsCity;
+import utils.*;
+import model.Lavori;
+
+public class serviceAppImplements implements serviceApp{
+	public JSONArray getFiltro(String[] city, String[] linguaggi,String remoto,String oreLavoro) {
+		JSONArray rarray= new JSONArray();
+		if(city!=null) {
+			filterCity x= new filterCity(city,linguaggi,remoto,oreLavoro);
+			cJson y= new cJson();
+			ArrayList<Lavori>offerte= new ArrayList();
+			ArrayList<Lavori>r1array= new ArrayList();
+			offerte=y.toJson();
+			r1array=x.filtraggio(city, offerte);
+			rarray=y.toJSON(r1array);
+			}
+		if(linguaggi!=null) {
+			filterLin x= new filterLin(city,linguaggi,remoto,oreLavoro);
+			cJson y= new cJson();
+			ArrayList<Lavori>offerte= new ArrayList();
+			offerte= y.toJson();
+			ArrayList<Lavori>r1array= new ArrayList();
+			r1array=x.filtraggio(city, offerte);
+			rarray=y.toJSON(r1array);
+			
+		}
+		if(remoto!=null) {
+			filterRemote x= new filterRemote(city,linguaggi,remoto,oreLavoro);
+			cJson y= new cJson();
+			ArrayList<Lavori>offerte= new ArrayList();
+			offerte= y.toJson();
+			ArrayList<Lavori>r1array= new ArrayList();
+			r1array=x.filtraggio(remoto, offerte);
+			rarray=y.toJSON(r1array);
+			return rarray;
+		}
+		if(oreLavoro!=null) {
+			filterFull x= new filterFull(city,linguaggi,remoto,oreLavoro);
+			cJson y= new cJson();
+			ArrayList<Lavori>offerte= new ArrayList();
+			offerte= y.toJson();
+			ArrayList<Lavori>r1array= new ArrayList();
+			r1array=x.filtraggio(oreLavoro, offerte);
+			rarray=y.toJSON(r1array);
+		}
+		return rarray;
+		
+	}
+	public JSONArray getOfferte() {
+		cJson x= new cJson();
+		ArrayList<Lavori>offerte= new ArrayList();
+		JSONArray rarray= new JSONArray();
+		offerte=x.toJson();
+		rarray=x.toJSON(offerte);
+		return rarray;
+		
+	}
+	public JSONArray getStats(String[]lin,String[] city,String sito,String data) {
+		cJson x= new cJson();
+		ArrayList<Lavori>offerte= new ArrayList();
+		JSONArray rarray= new JSONArray();
+		offerte=x.toJson();
+		if(lin==null) {
+			filteresStatsLinguaggi fsl= new filteresStatsLinguaggi(offerte,lin,city,sito,data);
+			rarray=fsl.filtraggioStatsLin(offerte, lin, sito, data);
+		}
+		if(city==null) {
+			filtersStatsCity fsc= new filtersStatsCity(offerte,lin,city,sito,data);
+			rarray=fsc.filtraggioStatsCity(offerte, city, sito, data);
+		}
+		return rarray;
+	}
+	
+	
 }
