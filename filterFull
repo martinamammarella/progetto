@@ -5,10 +5,10 @@ import java.util.Vector;
 import model.Lavori;
 import org.json.simple.*;
 public class filterFull extends Filters {
-	public filterFull(String[] city, String[] linguaggi,String remoto, String link, Date data,String oreLavoro){
-		 super(city,linguaggi,remoto,link,data,oreLavoro);
+	public filterFull(String[] city, String[] linguaggi,String remoto, String oreLavoro){
+		 super(city,linguaggi,remoto,oreLavoro);
 	}
- public ArrayList<Lavori> filtraggio(String[] fcity,Vector<Lavori> offerte) {
+ public ArrayList<Lavori> filtraggio(String oreLavoro,ArrayList<Lavori> offerte) {
 	 ArrayList<Lavori> filtrato = new ArrayList<Lavori>();
 	 for(Lavori z:offerte) {
 		 
