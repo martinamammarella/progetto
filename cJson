@@ -4,71 +4,79 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 import org.json.simple.parser.JSONParser;
+import org.json.*;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.HttpURLConnection;
 import java.util.Vector;
+import java.util.ArrayList;
 import java.util.Date;
 import java.io.*;
-
+import java.util.*;
 public class cJson {
-	public void toJson() {
- JSONObject chiamata =null;
- JSONParser parser= new JSONParser();
- 
-	 String apiKey="1175bbee759222ff5ed46fe1471c896b779e2fdf";
-	 String url="https://findwork.dev/api/jobs/";
-	 try {
-	 HttpURLConnection openConnection=(HttpURLConnection)new URL(url).openConnection();
-	 openConnection.setRequestMethod("GET");
-	 openConnection.setRequestProperty("Authorization", "API KEY-Token 1175bbee759222ff5ed46fe1471c896b779e2fdf");
-	 openConnection.setRequestProperty("Content-Type", "application/json");
-	 openConnection.setRequestProperty("Accept","application/json");
-	 openConnection.setDoOutput(true);
-	 String jsonBody=null;
-	 try (OutputStream os=openConnection.getOutputStream()){
-		 byte[] input=jsonBody.getBytes("utf-8");
-		 os.write(input,0,input.length);
-	 }
-	 
-	 InputStream in=openConnection.getInputStream();
-	 String line="";
-	 String data="";
-	 try {
-		 InputStreamReader inR= new InputStreamReader(in);
-		 BufferedReader buf= new BufferedReader(inR);
-		 while((line=buf.readLine())!=null) {
-			 data +=line;
-		 }
-	 }finally {
-		 in.close();
-	 }
-	 JSONObject obj=(JSONObject) JSONValue.parseWithException(data);
-	 
+	public ArrayList<Lavori> toJson() {
+		 JSONObject chiamata=null;
+			JSONParser parser= new JSONParser();
+			try {
+		    String url="https://findwork.dev/api/jobs/";
+		    HttpURLConnection openConnection=(HttpURLConnection)new URL(url).openConnection();
+		     openConnection.setRequestMethod("GET");
+			 openConnection.setRequestProperty("Authorization", "Token 1175bbee759222ff5ed46fe1471c896b779e2fdf");
+			 openConnection.setRequestProperty("Content-Type", "application/json");
+			 openConnection.setRequestProperty("Accept","application/json");
+			 openConnection.setDoOutput(true);
+		    String line="";
+		    try { InputStream in=openConnection.getInputStream();
+			    InputStreamReader inR= new InputStreamReader(in);
+			    BufferedReader buf= new BufferedReader(inR);
+			    while((line=buf.readLine())!=null){
+			    	chiamata=(JSONObject) parser.parse(line);
+				}
+			    in.close();}
+		    catch(Exception e) {
+		 	System.out.println("errore generico1");}}
+		 catch(Exception e ) {
+		    	System.out.println("errore2");}
 
- }
-	  
-	 catch(Exception e)
-	 {
-		 System.out.println("errore2");
-	 }}
- Lavori x= new Lavori();
- Vector<Lavori> offerte= new Vector<Lavori>();
- JSONArray array1=(JSONArray)chiamata.get("results");
- for(Object o:array1) {
-	 JSONObject ob1= (JSONObject) o;
-	 x.setId((int)ob1.get("id"));
-	 x.setRuolo((String)ob1.get("role"));
-	 x.setAzienda((String)ob1.get("company_name"));
-	 x.setRemoto((boolean)ob1.get("remote"));
-	 x.setSitoWeb((String)ob1.get("url"));
-	 x.setData((Date)ob1.get("date_posted"));
-	 x.setOrarioLavoro((String)ob1.get("employment_type"));
-	 x.setCity((String)ob1.get("location"));
-	 x.setLinguaggi((String [])ob1.get("keywords")); //funziona?
-	 offerte.add(x);
-	  }
+			JSONArray r= new JSONArray();
+			r=(JSONArray)chiamata.get("results");
+			ArrayList<Lavori> offerte = new ArrayList<Lavori>();
+			for(Object o:r) {
+		    JSONObject l= new JSONObject();
+		    l=(JSONObject) o;
+		    Lavori elem=new Lavori();
+		    elem.setAzienda((String)l.get("company_name"));
+		    elem.setCity((String)l.get("location"));
+		    elem.setData((String)l.get("date_posted"));
+		    elem.setId((long)l.get("id"));
+		    elem.setLinguaggi((JSONArray)l.get("keywords"));
+		    elem.setOrarioLavoro((String)l.get("employment_type"));
+		    elem.setRemoto((boolean)l.get("remote"));
+		    elem.setRuolo((String)l.get("role"));
+		    elem.setSitoWeb((String)l.get("url"));
+		    offerte.add(elem);
+		    
+			}
+			return offerte;
 }
-}
+	public JSONArray toJSON(ArrayList<Lavori>offerte) {
+		JSONObject o= new JSONObject();
+		JSONArray res= new JSONArray();
+		for(Lavori e:offerte) {
+			o=null;
+			o.put("company name",e.getAzienda());
+			o.put("location", e.getCity());
+			o.put("data_posted", e.getData());
+			o.put("id", e.getId());
+			o.put("keywords", e.getLinguaggi());
+			o.put("employment_type", e.getLinguaggi());
+			o.put("remote",e.getRemoto());
+			o.put("role", e.getRuolo());
+			o.put("url", e.getSitoWeb());
+			res.add(o);
+		}
+		return res;
+		}
+	}
