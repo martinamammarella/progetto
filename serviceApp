@@ -1,5 +1,12 @@
 package service;
-//interfaccia dell'applicazione, servizi esposti all'utente
+import java.util.Date;
+import java.util.ArrayList;
+import org.json.simple.*;
+import model.Lavori;
+
 public interface serviceApp {
+	public JSONArray getOfferte();
+	public JSONArray getFiltro(String[] city, String[] linguaggi,String remoto,String oreLavoro);
+	public JSONArray getStats(String[] city,String[]lin,String sito,String data);
 
 }
