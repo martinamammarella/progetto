@@ -1,0 +1,11 @@
+package defaultpo;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+@SpringBootApplication
+
+public class esempioApplication {
+	public static void main(String[] args) {
+			SpringApplication.run(esempioApplication.class, args);
+		}
+
+	}
