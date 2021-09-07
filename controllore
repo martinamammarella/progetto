@@ -1,5 +1,45 @@
 package controller;
-//richiama le funzioni a partire dalle rotte
+import service.*;
+import org.json.simple.*;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+@RestController
 public class controllore {
-
-}
+@Autowired
+	serviceAppImplements s= new serviceAppImplements();
+@GetMapping(value="/filtri")
+	  public JSONArray getFiltro(@RequestBody JSONObject body){
+		  JSONObject o= new JSONObject(body);
+		  String city[]=((String[])o.get("city"));
+		  String linguaggi[]=((String[])o.get("linguaggi"));
+		  String remote=((String)o.get("remote"));
+		  String oreLavoro=((String)o.get("oreLavoro"));
+		  JSONArray array= new JSONArray();
+		  array=s.getFiltro(city, linguaggi, remote, oreLavoro);
+		  return array;
+	  }
+@GetMapping(value="/statistiche")
+			public ResponseEntity<Object> getStats(@RequestBody JSONObject body){
+				JSONObject o= new JSONObject(body);
+				  String city[]=((String[])o.get("city"));
+				  String linguaggi[]=((String[])o.get("linguaggi"));
+				  String sito=((String)o.get("sito"));
+				  String data=((String)o.get("oreLavoro"));
+				  return new ResponseEntity <> (s.getStats(city, linguaggi, sito, data),HttpStatus.OK);
+			}
+@GetMapping(value="/offerte")
+ public JSONArray getOfferte(){
+	JSONObject o= new JSONObject();
+	String n="martina";
+	o.put("name", n);
+	JSONArray a= new JSONArray();
+	a.add(o);
+	return a;
+		}
+	}
